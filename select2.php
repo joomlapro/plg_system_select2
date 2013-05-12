@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Gallery
+ * @package     Joomla.Plugin
  * @subpackage  System.Select2
  * @copyright   Copyright (C) 2013 AtomTech, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -12,7 +12,7 @@ defined('JPATH_BASE') or die;
 /**
  * Select2 plugin.
  *
- * @package     Gallery
+ * @package     Joomla.Plugin
  * @subpackage  System.Select2
  * @since       3.1
  */
@@ -36,17 +36,17 @@ class PlgSystemSelect2 extends JPlugin
 		// Get the document object.
 		$doc = JFactory::getDocument();
 
+		// Define path.
+		$path = JUri::root(true) . 'plugins/system/select2';
+
 		// Add JavaScript Frameworks.
 		JHtml::_('jquery.framework');
 
-		// Define path.
-		$path = JUri::root(true) . 'plugins/system/select2/assets';
-
 		// Add Stylesheet.
-		$doc->addStyleSheet($path . '/css/select2.css');
+		$doc->addStyleSheet($path . '/assets/css/select2.css');
 
 		// Add JavaScript.
-		$doc->addScript($path . '/js/jquery.select2.min.js');
+		$doc->addScript($path . '/assets/js/jquery.select2.min.js');
 
 		// Build the script.
 		$script = array();
