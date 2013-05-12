@@ -33,27 +33,24 @@ class PlgSystemSelect2 extends JPlugin
 			return true;
 		}
 
-		// Get the document object.
-		$doc = JFactory::getDocument();
-
-		// Define path.
-		$path = JUri::root(true) . 'plugins/system/select2';
-
 		// Add JavaScript Frameworks.
 		JHtml::_('jquery.framework');
 
 		// Add Stylesheet.
-		$doc->addStyleSheet($path . '/assets/css/select2.css');
+		JHtml::stylesheet('plg_system_select2/select2.css', false, true, false);
 
 		// Add JavaScript.
-		$doc->addScript($path . '/assets/js/jquery.select2.min.js');
+		JHtml::script('plg_system_select2/jquery.select2.min.js', false, true);
+
+		// Get the document object.
+		$doc = JFactory::getDocument();
 
 		// Build the script.
 		$script = array();
 		$script[] = 'jQuery.noConflict();';
 		$script[] = '(function($) {';
 		$script[] = '	$(function() {';
-		$script[] = '		$("' . $this->params->get('selector', 'select') . '").select2();';
+		$script[] = '		$(\'' . $this->params->get('selector', 'select') . '\').select2();';
 		$script[] = '	});';
 		$script[] = '})(jQuery);';
 
