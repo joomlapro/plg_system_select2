@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension version="3.1" type="plugin" group="system" method="upgrade">
+	<name>plg_system_select2</name>
+	<author>Bruno Batista</author>
+	<creationDate>May 2013</creationDate>
+	<copyright>Copyright (C) 2013 AtomTech, Inc. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>bruno@atomtech.com.br</authorEmail>
+	<authorUrl>http://www.atomtech.com.br</authorUrl>
+	<version>1.0</version>
+	<description>PLG_SYSTEM_SELECT2_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="select2">select2.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="pt-BR">pt-BR/pt-BR.plg_system_select2.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.plg_system_select2.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="selector" type="text" size="40" class="inputbox" filter="string" label="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_LABEL" description="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
