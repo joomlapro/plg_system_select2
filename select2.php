@@ -10,7 +10,7 @@
 defined('JPATH_BASE') or die;
 
 /**
- * Select2 plugin.
+ * Joomla Select2 plugin.
  *
  * @package     Joomla.Plugin
  * @subpackage  System.Select2
@@ -33,29 +33,18 @@ class PlgSystemSelect2 extends JPlugin
 			return true;
 		}
 
-		// Add JavaScript Frameworks.
-		JHtml::_('jquery.framework');
+		// Register dependent classes.
+		JLoader::register('JHtmlSelect2', __DIR__ . '/helpers/html/select2.php');
 
-		// Add Stylesheet.
-		JHtml::stylesheet('plg_system_select2/select2.css', false, true, false);
+		// Register a function.
+		JHtml::register('jquery.select2', array('JHtmlSelect2', 'select2'));
 
-		// Add JavaScript.
-		JHtml::script('plg_system_select2/jquery.select2.min.js', false, true);
-
-		// Get the document object.
-		$doc = JFactory::getDocument();
-
-		// Build the script.
-		$script = array();
-		$script[] = 'jQuery.noConflict();';
-		$script[] = '(function($) {';
-		$script[] = '	$(function() {';
-		$script[] = '		$(\'' . $this->params->get('selector', 'select') . '\').select2();';
-		$script[] = '	});';
-		$script[] = '})(jQuery);';
-
-		// Add the script to the document head.
-		$doc->addScriptDeclaration(implode("\n", $script));
+		// Force load script.
+		if ($this->params->get('force'))
+		{
+			// Load the select2 jquery script.
+			JHtml::_('jquery.select2', $this->params->get('selector', 'select'));
+		}
 
 		return true;
 	}

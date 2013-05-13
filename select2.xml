@@ -28,6 +28,10 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
+				<field name="force" type="radio" class="btn-group" default="0" filter="integer" label="PLG_SYSTEM_SELECT2_FIELD_FORCE_LABEL" description="PLG_SYSTEM_SELECT2_FIELD_FORCE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
 				<field name="selector" type="text" size="40" class="inputbox" filter="string" label="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_LABEL" description="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_DESC" />
 			</fieldset>
 		</fields>
