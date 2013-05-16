@@ -51,12 +51,9 @@ abstract class JHtmlSelect2 extends JHtmlJquery
 
 		// Build the script.
 		$script = array();
-		$script[] = 'jQuery.noConflict();';
-		$script[] = '(function($) {';
-		$script[] = '	$(function() {';
-		$script[] = '		$(\'' . $selector . '\').select2();';
-		$script[] = '	});';
-		$script[] = '})(jQuery);';
+		$script[] = 'jQuery(document).ready(function() {';
+		$script[] = '	jQuery(\'' . $selector . '\').select2();';
+		$script[] = '});';
 
 		// Add the script to the document head.
 		$doc->addScriptDeclaration(implode("\n", $script));
