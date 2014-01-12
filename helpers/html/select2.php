@@ -1,37 +1,53 @@
 <?php
 /**
- * @package     Joomla.Libraries
- * @subpackage  HTML
+ * @package     Joomla.Plugin
+ * @subpackage  System.Select2
+ *
+ * @author      Bruno Batista <bruno@atomtech.com.br>
  * @copyright   Copyright (C) 2013 AtomTech, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @license     Commercial License
  */
 
 // No direct access.
-defined('JPATH_PLATFORM') or die;
+defined('_JEXEC') or die;
 
 /**
- * Select2 Utility class for jQuery JavaScript behaviors.
+ * select2 Utility class for jQuery JavaScript behaviors.
  *
  * @package     Joomla.Libraries
  * @subpackage  HTML
- * @since       3.1
+ * @since       3.2
  */
 abstract class JHtmlSelect2 extends JHtmlJquery
 {
 	/**
-	 * Method to load the jQuery Select2 into the document head.
+	 * Array containing information for loaded files.
+	 *
+	 * @var    array
+	 * @since  3.2
+	 */
+	protected static $loaded = array();
+
+	/**
+	 * Method to load the jQuery select2 into the document head.
 	 *
 	 * @param   string  $selector  The HTML selector.
 	 * @param   mixed   $debug     Is debugging mode on? [optional]
 	 *
 	 * @return  void
 	 *
-	 * @since   3.1
+	 * @since   3.2
 	 */
-	public static function Select2($selector = 'select', $debug = null)
+	public static function select2($selector = 'select', $debug = null)
 	{
-		// Include jQuery.
-		self::framework();
+		// Only load once
+		if (isset(static::$loaded[__METHOD__][$selector]))
+		{
+			return;
+		}
+
+		// Include jQuery framework.
+		static::framework();
 
 		// If no debugging value is set, use the configuration setting.
 		if ($debug === null)
@@ -41,22 +57,19 @@ abstract class JHtmlSelect2 extends JHtmlJquery
 		}
 
 		// Add Stylesheet.
-		JHtml::stylesheet('plg_system_select2/select2.css', false, true, false);
+		JHtml::_('stylesheet', 'plg_system_select2/select2.min.css', false, true, false, false, $debug);
 
 		// Add JavaScript.
-		JHtml::script('plg_system_select2/jquery.select2.min.js', false, true);
+		JHtml::_('script', 'plg_system_select2/jquery.select2.min.js', false, true, false, false, $debug);
 
-		// Get the document object.
-		$doc = JFactory::getDocument();
+		// Attach the select2 to the document.
+		JFactory::getDocument()->addScriptDeclaration(
+			"jQuery(document).ready(function() {
+				jQuery('$selector').select2();
+			});"
+		);
 
-		// Build the script.
-		$script = array();
-		$script[] = 'jQuery(document).ready(function() {';
-		$script[] = '	jQuery(\'' . $selector . '\').select2();';
-		$script[] = '});';
-
-		// Add the script to the document head.
-		$doc->addScriptDeclaration(implode("\n", $script));
+		static::$loaded[__METHOD__][$selector] = true;
 
 		return;
 	}

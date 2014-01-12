@@ -2,35 +2,38 @@
 /**
  * @package     Joomla.Plugin
  * @subpackage  System.Select2
+ *
+ * @author      Bruno Batista <bruno@atomtech.com.br>
  * @copyright   Copyright (C) 2013 AtomTech, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @license     Commercial License
  */
 
 // No direct access.
-defined('JPATH_BASE') or die;
+defined('_JEXEC') or die;
 
 /**
  * Joomla Select2 plugin.
  *
  * @package     Joomla.Plugin
  * @subpackage  System.Select2
- * @since       3.1
+ * @author      Bruno Batista <bruno@atomtech.com.br>
+ * @since       3.2
  */
 class PlgSystemSelect2 extends JPlugin
 {
 	/**
 	 * Method to catch the onAfterDispatch event.
 	 *
-	 * @return  boolean  True on success
+	 * @return  void
 	 *
-	 * @since   3.1
+	 * @since   3.2
 	 */
 	public function onAfterDispatch()
 	{
 		// Check that we are in the site application.
 		if (JFactory::getApplication()->isAdmin())
 		{
-			return true;
+			return;
 		}
 
 		// Register dependent classes.
@@ -46,6 +49,6 @@ class PlgSystemSelect2 extends JPlugin
 			JHtml::_('jquery.select2', $this->params->get('selector', 'select'));
 		}
 
-		return true;
+		return;
 	}
 }

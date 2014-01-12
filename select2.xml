@@ -1,17 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<extension version="3.1" type="plugin" group="system" method="upgrade">
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	version="3.2"
+	type="plugin"
+	group="system"
+	method="upgrade">
 	<name>plg_system_select2</name>
 	<author>Bruno Batista</author>
 	<creationDate>May 2013</creationDate>
 	<copyright>Copyright (C) 2013 AtomTech, Inc. All rights reserved.</copyright>
-	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<license>Commercial License</license>
 	<authorEmail>bruno@atomtech.com.br</authorEmail>
 	<authorUrl>http://www.atomtech.com.br</authorUrl>
 	<version>1.0</version>
 	<description>PLG_SYSTEM_SELECT2_XML_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
 	<files>
 		<filename plugin="select2">select2.php</filename>
 		<filename>index.html</filename>
+		<folder>helpers</folder>
 	</files>
 	<languages folder="language">
 		<language tag="en-GB">en-GB/en-GB.plg_system_select2.ini</language>
@@ -19,7 +25,9 @@
 		<language tag="pt-BR">pt-BR/pt-BR.plg_system_select2.ini</language>
 		<language tag="pt-BR">pt-BR/pt-BR.plg_system_select2.sys.ini</language>
 	</languages>
-	<media destination="plg_system_select2" folder="media">
+	<media
+		destination="plg_system_select2"
+		folder="media">
 		<folder>css</folder>
 		<folder>images</folder>
 		<folder>js</folder>
@@ -28,11 +36,25 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="force" type="radio" class="btn-group" default="0" filter="integer" label="PLG_SYSTEM_SELECT2_FIELD_FORCE_LABEL" description="PLG_SYSTEM_SELECT2_FIELD_FORCE_DESC">
+				<field
+					name="force"
+					type="radio"
+					class="btn-group"
+					default="0"
+					filter="integer"
+					label="PLG_SYSTEM_SELECT2_FIELD_FORCE_LABEL"
+					description="PLG_SYSTEM_SELECT2_FIELD_FORCE_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
-				<field name="selector" type="text" size="40" class="inputbox" filter="string" label="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_LABEL" description="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_DESC" />
+				<field
+					name="selector"
+					type="text"
+					size="40"
+					class="inputbox"
+					filter="string"
+					label="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_LABEL"
+					description="PLG_SYSTEM_SELECT2_FIELD_SELECTOR_DESC" />
 			</fieldset>
 		</fields>
 	</config>
